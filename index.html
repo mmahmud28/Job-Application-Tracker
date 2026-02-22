@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/style.css">
 </head>
 <body class="w-full md:w-[80%] mx-auto p-5 md:p-[100px]">
 
@@ -16,239 +15,259 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 =">
             <div class="bg-[#F1F2F4] border-[#F1F2F4] p-5 rounded-md">
                 <p class="text-xl mb-1 font-semibold">Total</p>
-                <p class="text-3xl font-bold text-[#002C5C] ">0</p>
+                <p id="total-num" class="text-3xl font-bold text-[#002C5C]">0</p>
             </div>
 
              <div class="bg-[#F1F2F4] border-[#F1F2F4] p-5 rounded-md">
                 <p class="text-xl mb-1 font-semibold">Interview</p>
-                <p class="text-3xl font-bold text-[#10B981] ">0</p>
+                <p id="interview-num" class="text-3xl font-bold text-[#10B981] ">0</p>
             </div>
 
              <div class="bg-[#F1F2F4] border-[#F1F2F4] p-5 rounded-md">
                 <p class="text-xl mb-1 font-semibold">Rejected</p>
-                <p class="text-3xl font-bold text-[#EF4444] ">0</p>
+                <p id="reject-num" class="text-3xl font-bold text-[#EF4444] ">0</p>
             </div>
 
         </div>
     </header>
 
-    <section class="mb-5 mt-15">
+     <section class="mb-5 mt-15">
         <div class="flex justify-between text-center">
             <h4 class="text-2xl font-bold">Available Jobs</h4>
             
             <div class="flex gap-2 font-medium">
-                <p>0</p>
+                <p id="total-job-num">0</p>
                 <p>Jobs</p>
             </div>
 
         </div>
 
         <div class="mt-5 flex gap-5">
-           <button class="btn btn-active btn-accent text-xl font-bold text-black hover:bg-black hover:text-white" id="all-filter-btn" bor>All</button>
-           <button class="btn btn-active text-xl font-bold  text-black hover:bg-black hover:text-white" id="thriving-btn">Interview</button>
-           <button class="btn btn-active text-xl font-bold  text-black hover:bg-black hover:text-white" id="struggling-btn">Rejected</button>
+           <button onclick="toogleButton('all-filter-btn')" class="btn btn-active btn-accent text-xl font-bold text-black hover:bg-black hover:text-white" id="all-filter-btn" bor>All</button>
+           <button onclick="toogleButton('interview-btn')" class="btn btn-active text-xl font-bold  text-black hover:bg-black hover:text-white" id="interview-btn">Interview</button>
+           <button onclick="toogleButton('reject-btn')" class="btn btn-active text-xl font-bold  text-black hover:bg-black hover:text-white" id="reject-btn">Rejected</button>
         </div>
     </section>
 
-    <section class="mb-4 mt-5">
+    <main>
+        <!-- all card  -->
+        <section id="all_card-view-show" class="mb-4 mt-5">
 
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">TechNova Solutions</h4>
-            <p class="text-gray-600 text-xl">Frontend Developer</p>
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">TechNova Solutions</h4>
+                <p class="text-gray-600 text-xl">Frontend Developer</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Dhaka, Bangladesh, Full-time, ৳40,000 - ৳70,000 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">We are looking for a skilled Frontend Developer with experience in React and Tailwind CSS to build responsive web applications.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"  class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Dhaka, Bangladesh, Full-time, ৳40,000 - ৳70,000 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">We are looking for a skilled Frontend Developer with experience in React and Tailwind CSS to build responsive web applications.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div class="mt-10 md:">
+                <span id="delete-button" class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">InnoSoft Ltd.</h4>
-            <p class="text-gray-600 text-xl">Backend Developer</p>
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">InnoSoft Ltd.</h4>
+                <p class="text-gray-600 text-xl">Backend Developer</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Remote, Contract, $1200 - $1800 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">Seeking a Backend Developer proficient in Node.js and MongoDB to develop scalable APIs and maintain server-side logic.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"   class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Remote, Contract, $1200 - $1800 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">Seeking a Backend Developer proficient in Node.js and MongoDB to develop scalable APIs and maintain server-side logic.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div class="mt-10 md:">
+                <span id="delete-button" class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
-        
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">BrightTech Agency</h4>
-            <p class="text-gray-600 text-xl">UI/UX Designer</p>
+            
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">BrightTech Agency</h4>
+                <p class="text-gray-600 text-xl">UI/UX Designer</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Chattogram, Bangladesh, Part-time, ৳25,000 - ৳40,000 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">Seeking a Backend Developer proficient in Node.js and MongoDB to develop scalable APIs and maintain server-side logic.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"   class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Chattogram, Bangladesh, Part-time, ৳25,000 - ৳40,000 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">Seeking a Backend Developer proficient in Node.js and MongoDB to develop scalable APIs and maintain server-side logic.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div class="mt-10 md:">
+                <span id="delete-button" class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
-        
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">NextGen IT</h4>
-            <p class="text-gray-600 text-xl">Full Stack Developer</p>
+            
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">NextGen IT</h4>
+                <p class="text-gray-600 text-xl">Full Stack Developer</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Dhaka, Bangladesh, Part-time, ৳60,000 - ৳100,000 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">Hiring a Full Stack Developer experienced in MERN stack to build and maintain web applications.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button  id="reject-button"  class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Dhaka, Bangladesh, Part-time, ৳60,000 - ৳100,000 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">Hiring a Full Stack Developer experienced in MERN stack to build and maintain web applications.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div class="mt-10 md:">
+                <span id="delete-button" class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">CloudNet Systems</h4>
-            <p class="text-gray-600 text-xl">DevOps Engineer</p>
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">CloudNet Systems</h4>
+                <p class="text-gray-600 text-xl">DevOps Engineer</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Remote, Full-time, $2000 - $3000 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">Responsible for CI/CD pipelines, cloud infrastructure management, and deployment automation.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"   class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Remote, Full-time, $2000 - $3000 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">Responsible for CI/CD pipelines, cloud infrastructure management, and deployment automation.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div class="mt-10 md:">
+                <span id="delete-button" class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">DigitalWave Ltd.</h4>
-            <p class="text-gray-600 text-xl">Digital Marketing Executive</p>
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">DigitalWave Ltd.</h4>
+                <p class="text-gray-600 text-xl">Digital Marketing Executive</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Sylhet, Bangladesh, Internship, ৳15,000 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">Assist in managing social media campaigns, SEO optimization, and online brand growth strategies.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"   class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Sylhet, Bangladesh, Internship, ৳15,000 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">Assist in managing social media campaigns, SEO optimization, and online brand growth strategies.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div class="mt-10 md:">
+                <span id="delete-button" class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">DataCore Analytics</h4>
-            <p class="text-gray-600 text-xl">Data Analyst</p>
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-5">
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">DataCore Analytics</h4>
+                <p class="text-gray-600 text-xl">Data Analyst</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Dhaka, Bangladesh, Full-time, ৳50,000 - ৳80,000 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">Analyze datasets, generate insights, and create reports using Excel, SQL, and Power BI.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"   class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Dhaka, Bangladesh, Full-time, ৳50,000 - ৳80,000 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">Analyze datasets, generate insights, and create reports using Excel, SQL, and Power BI.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div class="mt-10 md:">
+                <span id="delete-button" class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
-        <div class="grid grid-cols-1 md:flex justify-between bg-gray-200 rounded-md p-6 mb-4">
-            <div class="space-y-6">
-           
-                <div>
-                     <h4 class="font-bold text-xl">CyberSecure Pro</h4>
-            <p class="text-gray-600 text-xl">Cyber Security Specialist</p>
+            <div class="bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8"> 
+                <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="font-bold text-xl">CyberSecure Pro</h4>
+                <p class="text-gray-600 text-xl">Cyber Security Specialist</p>
+                    </div>
+
+                <p class="text-gray-600 text-xl">Remote,Full-time, $2500 - $3500 / month </p>
+                <button id="status-button" class="btn">Not Applied</button>
+
+                <p class="text-xl">Monitor security systems, perform vulnerability assessments, and ensure data protection compliance.</p>
+
+                <div class="flex gap-5">
+                    <button id="inetview-button" class="btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"   class="btn btn-dash btn-warning">Rejected</button>
                 </div>
-
-            <p class="text-gray-600 text-xl">Remote,Full-time, $2500 - $3500 / month </p>
-            <button class="btn">Not Applied</button>
-
-            <p class="text-xl">Monitor security systems, perform vulnerability assessments, and ensure data protection compliance.</p>
-
-            <div class="flex gap-5">
-                <button class="btn btn-dash btn-accent">interview</button>
-                <button class="btn btn-dash btn-warning">Rejected</button>
             </div>
-        </div>
 
-        <div class="mt-10 md:">
-            <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-        </div>
-        </div>
+            <div id="delete-button" class="mt-10 md:">
+                <span class="bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            </div>
 
+        </section>
 
+        <!-- interview card  -->
+        <section id="interview-card-view-show" class="mb-4 mt-5 hidden">
+            <div id="interview-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
+                <img class="" src="/jobs.png" alt="">
+                <h2 class="font-bold text-2xl text-[#002C5C]">No Interview jobs available</h2>
+                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
+            </div>
+        </section>
 
-
-    </section>
+        <!-- rej card  -->
+        <section id="reject-card-view-show" class="mb-4 mt-5 hidden">
+            <div id="reject-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
+                <img class="" src="/jobs.png" alt="">
+                <h2 class="font-bold text-2xl text-[#002C5C]">No Rejected jobs available</h2>
+                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
+            </div>
+        </section>
+    </main>
+    
+    <script src="/script.js"></script>
 </body>
 </html>
