@@ -2,30 +2,46 @@
 let totalNum = document.getElementById('total-num');
 let interviewNum = document.getElementById('interview-num');
 let rejectNum = document.getElementById('reject-num');
-
+// console.log(totalNum);
+// console.log(interviewNum);
+// console.log(interviewNum);
 let totalJobNum = document.getElementById('total-job-num');
+
+// console.log(totalJobNum);
 
 // All Button Find By Id 
 const allFilterButton = document.getElementById('all-filter-btn');
 const interviewFilterButton = document.getElementById('interview-btn');
 const rejectFilterButton = document.getElementById('reject-btn');
+// console.log(allFilterButton);
+// console.log(interviewFilterButton);
+// console.log(rejectFilterButton);
 
 
 // Delete Button 
 const deleteButton = document.getElementById('delete-button');
+// console.log(deleteButton);
 
 
 // Status Button Add 
 const statusButton = document.getElementById('status-button');
+// console.log(statusButton);
+statusButton.innerText = statusButton.innerText.toUpperCase();
 
 // Cardview Parent 
 let allCardViewShow = document.getElementById('all_card-view-show');
 let interviewCardViewShow = document.getElementById("interview-card-view-show");
 let rejectCardViewShow = document.getElementById("reject-card-view-show");
+// console.log(allCardViewShow);
+// console.log(interviewCardViewShow);
+// console.log(rejectCardViewShow);
 
 
 const interViewButton = document.getElementById('inetview-button');
 const rejectButton = document.getElementById('reject-button');
+
+// console.log(interViewButton.innerHTML);
+// console.log(rejectButton);
 
 interViewButton.innerText = interViewButton.innerText.toUpperCase();
 rejectButton.innerText = rejectButton.innerText.toUpperCase();
@@ -33,10 +49,12 @@ rejectButton.innerText = rejectButton.innerText.toUpperCase();
 
 const interViewEmty = document.getElementById("interview-emty-card-design");
 const rejectEmty = document.getElementById("reject-emty-card-design");
+// console.log(interViewEmty);
+// console.log(rejectEmty);
 
 let interViewArrayList = [];
 let rejectArrayList = [];
-let currentStatue= "All"
+
 
 function calculateCount (){
     totalNum.innerText = allCardViewShow.children.length;
@@ -46,7 +64,7 @@ function calculateCount (){
     interviewNum.innerText = interViewArrayList.length;
     rejectNum.innerText = rejectArrayList.length;
 
-    console.log(interViewArrayList.length);
+    // console.log(interViewArrayList.length);
 
     if(interViewArrayList.length>0){
         interViewEmty.classList.add("hidden")
@@ -60,6 +78,7 @@ function calculateCount (){
 
 calculateCount()
 
+
 function toogleButton (btnId){
     allFilterButton.classList.remove("btn-accent");
     interviewFilterButton.classList.remove("btn-accent");
@@ -71,23 +90,27 @@ function toogleButton (btnId){
 
     const seletedButton = document.getElementById(btnId);
 
+    // console.log(btnId);
+
     currentStatue = btnId;
+
+    console.log(btnId);
 
     if(seletedButton){
         seletedButton.classList.remove("btn-active","text-black");
         seletedButton.classList.add("btn-accent","text-black");
     }
 
-    if(btnId=="all-filter-btn"){
+    if(btnId==="all-filter-btn"){
         allCardViewShow.classList.remove("hidden");
         interviewCardViewShow.classList.add("hidden");
         rejectCardViewShow.classList.add("hidden");
-    } else if (btnId=="interview-btn"){
+    } else if (btnId==="interview-btn"){
         allCardViewShow.classList.add("hidden");
         interviewCardViewShow.classList.remove("hidden");
         rejectCardViewShow.classList.add("hidden");
         renderInterviewData();
-    } else if (btnId== "reject-btn"){
+    } else if (btnId=== "reject-btn"){
         allCardViewShow.classList.add("hidden");
         interviewCardViewShow.classList.add("hidden");
         rejectCardViewShow.classList.remove("hidden");
@@ -95,125 +118,26 @@ function toogleButton (btnId){
     }
 }
 
-
-// main contnet 
 const mainContainer = document.querySelector("main");
+// console.log(mainContainer.innerHTML);
 
-// mainContainer.addEventListener("click",function(event){
-    
-//     const interviewBtn = event.target.closest(".interview-btn");
-//     const rejectBtn = event.target.closest(".reject-btn");
-//     const deleteBtn = event.target.closest(".delete-btn");
-
-
-//     if(interviewBtn){
-//         const parentNode = event.target.parentNode.parentNode;
-
-//         if (!parentNode) return;
-
-//         const companyName = parentNode.querySelector(".company-name").innerText;
-//         const jobType = parentNode.querySelector(".job-type").innerText;
-        
-//         const jobLocation = parentNode.querySelector(".job-location").innerText;
-        
-//         const jobDescription = parentNode.querySelector(".job-description").innerText;
-    
-//         console.log(jobDescription);
-
-//         parentNode.querySelector('#status-button').innerText = "Interview"
-
-//         if(!companyName) return;
-
-//         const cardInfo = {
-//             companyName,
-//             jobType,
-//             jobLocation,
-//             statusButton:"Interview",
-//             jobDescription
-//         }
-
-    
-
-
-//         const dataExist = interViewArrayList.find(
-//             item => item.companyName === cardInfo.companyName
-//         )
-        
-//         if (!dataExist){
-//             interViewArrayList.push(cardInfo);
-//         }
-
-//         rejectArrayList = rejectArrayList.filter(item=> item.companyName != cardInfo.companyName)
-
-//         calculateCount();
-
-//         if(currentStatue == "reject-btn"){
-//             renderInterviewData()
-//         }
-
-        
-//     } else if (rejectBtn){
-//         const parentNode = event.target.parentNode.parentNode;
-
-//         if (!parentNode) return;
-
-//         const companyName = parentNode.querySelector(".company-name").innerText;
-//         const jobType = parentNode.querySelector(".job-type").innerText;
-        
-//         const jobLocation = parentNode.querySelector(".job-location").innerText;
-//         //const statusButton = parentNode.querySelector("#status-button").innerText;
-        
-//         const jobDescription = parentNode.querySelector(".job-description").innerText;
-    
-//         parentNode.querySelector('#status-button').innerText = "Rejected"
-
-//         if(!companyName) return;
-
-//         const cardInfo = {
-//             companyName,
-//             jobType,
-//             jobLocation,
-//             statusButton:"Rejected",
-//             jobDescription
-//         }
-
-    
-
-
-//         const dataExist = rejectArrayList.find(
-//             item => item.companyName === cardInfo.companyName
-//         )
-        
-//         if (!dataExist){
-//             rejectArrayList.push(cardInfo);
-//             console.log(cardInfo);
-//         }
-
-//         interViewArrayList = interViewArrayList.filter(item=> item.companyName != cardInfo.companyName)
-
-//         calculateCount();
-
-//         if (currentStatue == "interview-btn"){
-//             renderRejectData();
-//         }
-
-       
-//     } else if (deleteBtn){
-//         console.log("Item Deleted");
-//     }
-
-// });
 
 mainContainer.addEventListener("click", function(event){
 
-    const interviewBtn = event.target.closest(".interview-btn");
-    const rejectBtn = event.target.closest(".reject-btn");
-    const deleteBtn = event.target.closest(".delete-btn");
+    const interviewBtn = event.target.closest(".inetview-button");
+    const rejectBtn = event.target.closest("#reject-button");
+    const deleteBtn = event.target.closest("#delete-button");
+
+    // console.log(interviewBtn);
+    // console.log(rejectBtn);
+    // console.log(deleteBtn);
 
     if(interviewBtn){
 
         const parentNode = event.target.closest(".job-card");
-        console.log(parentNode);
+        
+        // console.log(parentNode);
+
         if(!parentNode) return;
 
         const companyName = parentNode.querySelector(".company-name")?.innerText;
@@ -221,7 +145,7 @@ mainContainer.addEventListener("click", function(event){
         const jobLocation = parentNode.querySelector(".job-location")?.innerText;
         const jobDescription = parentNode.querySelector(".job-description")?.innerText;
 
-        parentNode.querySelector(".status-btn").innerText = "Interview";
+        parentNode.querySelector(".status-button").innerText = "Interview";
 
         const cardInfo = {
             companyName,
@@ -249,7 +173,7 @@ mainContainer.addEventListener("click", function(event){
 
         const parentNode = event.target.closest(".job-card");
 
-        console.log(parentNode);
+        // console.log(parentNode);
         
 
         if(!parentNode) return;
@@ -259,7 +183,7 @@ mainContainer.addEventListener("click", function(event){
         const jobLocation = parentNode.querySelector(".job-location")?.innerText;
         const jobDescription = parentNode.querySelector(".job-description")?.innerText;
 
-        parentNode.querySelector(".status-btn").innerText = "Rejected";
+        parentNode.querySelector(".status-button").innerText = "Rejected";
 
         const cardInfo = {
             companyName,
@@ -298,79 +222,84 @@ mainContainer.addEventListener("click", function(event){
 function renderInterviewData(){
 
     interviewCardViewShow.innerHTML = "";
-
     for (let cardData of interViewArrayList){
-
+        
         let div = document.createElement("div");
 
         div.className = "job-card bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8";
 
         div.innerHTML = `
-            <div class="space-y-6">
-                <div>
-                    <h4 class="company-name font-bold text-xl">${cardData.companyName}</h4>
-                    <p class="job-type text-gray-600 text-xl">${cardData.jobType}</p>
-                </div>
+        <div>
+                    <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="company-name font-bold text-xl">${cardData.companyName}</h4>
+                <p class="job-type text-gray-600 text-xl">${cardData.jobType}</p>
+                    </div>
 
                 <p class="job-location text-gray-600 text-xl">
-                    ${cardData.jobLocation}
-                </p>
-
-                <button class="status-button btn">
-                    ${cardData.statusButton}
-                </button>
+                ${cardData.jobLocation}</p>
+                <button id="status-button" class="status-button btn"> ${cardData.statusButton}</button>
 
                 <p class="job-description text-xl">
-                    ${cardData.jobDescription}
+                 ${cardData.jobDescription}
                 </p>
 
                 <div class="flex gap-5">
-                    <button class="inetview-button btn btn-dash btn-accent">Interview</button>
-                    <button class="reject-button btn btn-dash btn-warning">Rejected</button>
+                    <button id="inetview-button" class="inetview-button btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button" class="reject-button btn btn-dash btn-warning">Rejected</button>
                 </div>
             </div>
-        `;
+
+            <div class="mt-10 md:">
+                <span id="delete-button" class="delete-button bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+                </div>
+        `
 
         interviewCardViewShow.appendChild(div);
     }
-}
 
+}
 function renderRejectData(){
 
     rejectCardViewShow.innerHTML = "";
-
     for (let cardData of rejectArrayList){
-
+        
         let div = document.createElement("div");
 
         div.className = "job-card bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8";
 
         div.innerHTML = `
-            <div class="space-y-6">
-                <div>
-                    <h4 class="company-name font-bold text-xl">${cardData.companyName}</h4>
-                    <p class="job-type text-gray-600 text-xl">${cardData.jobType}</p>
-                </div>
+        <div>
+                    <div class="space-y-6">
+            
+                    <div>
+                        <h4 class="company-name font-bold text-xl">${cardData.companyName}</h4>
+                <p class="job-type text-gray-600 text-xl">${cardData.jobType}</p>
+                    </div>
 
                 <p class="job-location text-gray-600 text-xl">
-                    ${cardData.jobLocation}
-                </p>
-
-                <button class="status-button btn">
-                    ${cardData.statusButton}
-                </button>
+                ${cardData.jobLocation}</p>
+                <button id="status-button" class="status-button btn"> ${cardData.statusButton}</button>
 
                 <p class="job-description text-xl">
-                    ${cardData.jobDescription}
+                 ${cardData.jobDescription}
                 </p>
 
                 <div class="flex gap-5">
-                    <button class="inetview-button btn btn-dash btn-accent">Interview</button>
-                    <button class="reject-button btn btn-dash btn-warning">Rejected</button>
+                    <button id="inetview-button" class="inetview-button btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button" class="reject-button btn btn-dash btn-warning">Rejected</button>
                 </div>
             </div>
-        `;
+
+            <div class="mt-10 md:">
+                <span id="delete-button" class="delete-button bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+                </div>
+        `
 
         rejectCardViewShow.appendChild(div);
     }
+
 }
