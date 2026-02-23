@@ -1,47 +1,32 @@
-// Show All Display Numer 
 let totalNum = document.getElementById('total-num');
 let interviewNum = document.getElementById('interview-num');
 let rejectNum = document.getElementById('reject-num');
-// console.log(totalNum);
-// console.log(interviewNum);
-// console.log(interviewNum);
+
+
 let totalJobNum = document.getElementById('total-job-num');
 
-// console.log(totalJobNum);
 
-// All Button Find By Id 
 const allFilterButton = document.getElementById('all-filter-btn');
 const interviewFilterButton = document.getElementById('interview-btn');
 const rejectFilterButton = document.getElementById('reject-btn');
-// console.log(allFilterButton);
-// console.log(interviewFilterButton);
-// console.log(rejectFilterButton);
 
 
-// Delete Button 
 const deleteButton = document.getElementById('delete-button');
-// console.log(deleteButton);
 
 
-// Status Button Add 
 const statusButton = document.getElementById('status-button');
-// console.log(statusButton);
+
 statusButton.innerText = statusButton.innerText.toUpperCase();
 
-// Cardview Parent 
+
 let allCardViewShow = document.getElementById('all_card-view-show');
 let interviewCardViewShow = document.getElementById("interview-card-view-show");
 let rejectCardViewShow = document.getElementById("reject-card-view-show");
-// console.log(allCardViewShow);
-// console.log(interviewCardViewShow);
-// console.log(rejectCardViewShow);
 
 
 const interViewButton = document.getElementById('inetview-button');
 const rejectButton = document.getElementById('reject-button');
 
-// console.log(interViewButton.innerHTML);
-// console.log(rejectButton);
 
 interViewButton.innerText = interViewButton.innerText.toUpperCase();
 rejectButton.innerText = rejectButton.innerText.toUpperCase();
@@ -49,12 +34,56 @@ rejectButton.innerText = rejectButton.innerText.toUpperCase();
 
 const interViewEmty = document.getElementById("interview-emty-card-design");
 const rejectEmty = document.getElementById("reject-emty-card-design");
-// console.log(interViewEmty);
-// console.log(rejectEmty);
+
 
 let interViewArrayList = [];
 let rejectArrayList = [];
+let currentStatue = "All"
 
+function toogleButton (btnId){
+    allFilterButton.classList.remove("btn-accent");
+    interviewFilterButton.classList.remove("btn-accent");
+    rejectFilterButton.classList.remove("btn-accent");
+
+    allFilterButton.classList.add("btn-active","text-black");
+    interviewFilterButton.classList.add("btn-active","text-black");
+    rejectFilterButton.classList.add("btn-active","text-black");
+
+    const seletedButton = document.getElementById(btnId);
+
+    currentStatue = btnId;
+
+    
+
+    if(seletedButton){
+        seletedButton.classList.remove("btn-active","text-black");
+        seletedButton.classList.add("btn-accent","text-black");
+    }
+
+    if(btnId=="all-filter-btn"){
+        allCardViewShow.classList.remove("hidden");
+        interviewCardViewShow.classList.add("hidden");
+        rejectCardViewShow.classList.add("hidden");
+    } else if (btnId=="interview-btn"){
+        allCardViewShow.classList.add("hidden");
+        interviewCardViewShow.classList.remove("hidden");
+        rejectCardViewShow.classList.add("hidden");
+        
+        if(interViewArrayList.length > 0){
+        renderInterviewData();
+        }
+
+    } else if (btnId=="reject-btn"){
+        allCardViewShow.classList.add("hidden");
+        interviewCardViewShow.classList.add("hidden");
+        rejectCardViewShow.classList.remove("hidden");
+        
+        if(rejectArrayList.length > 0){
+        renderRejectData();
+        }
+
+    }
+}
 
 function calculateCount (){
     totalNum.innerText = allCardViewShow.children.length;
@@ -63,8 +92,6 @@ function calculateCount (){
 
     interviewNum.innerText = interViewArrayList.length;
     rejectNum.innerText = rejectArrayList.length;
-
-    // console.log(interViewArrayList.length);
 
     if(interViewArrayList.length>0){
         interViewEmty.classList.add("hidden")
@@ -78,48 +105,7 @@ function calculateCount (){
 
 calculateCount()
 
-
-function toogleButton (btnId){
-    allFilterButton.classList.remove("btn-accent");
-    interviewFilterButton.classList.remove("btn-accent");
-    rejectFilterButton.classList.remove("btn-accent");
-
-    allFilterButton.classList.add("btn-active","text-black");
-    interviewFilterButton.classList.add("btn-active","text-black");
-    rejectFilterButton.classList.add("btn-active","text-black");
-
-    const seletedButton = document.getElementById(btnId);
-
-    console.log(btnId);
-
-    currentStatue = btnId;
-
-    console.log(btnId);
-
-    if(seletedButton){
-        seletedButton.classList.remove("btn-active","text-black");
-        seletedButton.classList.add("btn-accent","text-black");
-    }
-
-    if(btnId==="all-filter-btn"){
-        allCardViewShow.classList.remove("hidden");
-        interviewCardViewShow.classList.add("hidden");
-        rejectCardViewShow.classList.add("hidden");
-    } else if (btnId==="interview-btn"){
-        allCardViewShow.classList.add("hidden");
-        interviewCardViewShow.classList.remove("hidden");
-        rejectCardViewShow.classList.add("hidden");
-        renderInterviewData();
-    } else if (btnId=== "reject-btn"){
-        allCardViewShow.classList.add("hidden");
-        interviewCardViewShow.classList.add("hidden");
-        rejectCardViewShow.classList.remove("hidden");
-        renderRejectData();
-    }
-}
-
 const mainContainer = document.querySelector("main");
-// console.log(mainContainer.innerHTML);
 
 
 mainContainer.addEventListener("click", function(event){
@@ -151,19 +137,21 @@ mainContainer.addEventListener("click", function(event){
             jobDescription
         };
 
-        const exist = interViewArrayList.find(item => item.companyName === companyName);
+        const exist = interViewArrayList.find(item => item.companyName == companyName);
 
         if(!exist){
             interViewArrayList.push(cardInfo);
         }
 
-        rejectArrayList = rejectArrayList.filter(item => item.companyName !== companyName);
+        rejectArrayList = rejectArrayList.filter(item => item.companyName != companyName);
+
+        console.log(currentStatue+"Poli")
+
+        if(currentStatue == "reject-btn"){
+            renderRejectData();
+        }
 
         calculateCount();
-
-        // if(currentStatue === "interview-btn"){
-        //     renderInterviewData();
-        // }
 
     } else if(rejectBtn){
 
@@ -189,19 +177,20 @@ mainContainer.addEventListener("click", function(event){
             jobDescription
         };
 
-        const exist = rejectArrayList.find(item => item.companyName === companyName);
+        const exist = rejectArrayList.find(item => item.companyName == companyName);
 
         if(!exist){
             rejectArrayList.push(cardInfo);
         }
 
-        interViewArrayList = interViewArrayList.filter(item => item.companyName !== companyName);
+        interViewArrayList = interViewArrayList.filter(item => item.companyName != companyName);
 
-        calculateCount();
 
-        // if(currentStatue === "reject-btn"){
-        //     renderRejectData();
-        // }
+        if(currentStatue === "interview-btn"){
+            renderInterviewData();
+        }
+
+         calculateCount();
 
     } else if(deleteBtn){
 
@@ -218,6 +207,15 @@ mainContainer.addEventListener("click", function(event){
 function renderInterviewData(){
 
     interviewCardViewShow.innerHTML = "";
+
+    if(interViewArrayList.length === 0){
+        interViewEmty.classList.remove("hidden");
+        return;
+    }
+
+    interViewEmty.classList.add("hidden");
+
+    
     for (let cardData of interViewArrayList){
         
         let div = document.createElement("div");
@@ -225,7 +223,7 @@ function renderInterviewData(){
         div.className = "job-card bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8";
 
         div.innerHTML = `
-        <div>
+        
                     <div class="space-y-6">
             
                     <div>
@@ -257,7 +255,7 @@ function renderInterviewData(){
             <div class="mt-10 md:">
                 <span id="delete-button" class="delete-btn bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
             </div>
-                </div>
+               
         `
 
         interviewCardViewShow.appendChild(div);
@@ -267,6 +265,14 @@ function renderInterviewData(){
 function renderRejectData(){
 
     rejectCardViewShow.innerHTML = "";
+
+    if(rejectArrayList.length === 0){
+        rejectEmty.classList.remove("hidden");
+        return;
+    }
+
+    rejectEmty.classList.add("hidden");
+
     for (let cardData of rejectArrayList){
         
         let div = document.createElement("div");
@@ -274,7 +280,7 @@ function renderRejectData(){
         div.className = "job-card bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8";
 
         div.innerHTML = `
-        <div>
+       
                     <div class="space-y-6">
             
                     <div>
@@ -306,7 +312,7 @@ function renderRejectData(){
             <div class="mt-10 md:">
                 <span id="delete-button" class="delete-btn bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
             </div>
-                </div>
+               
         `
 
         rejectCardViewShow.appendChild(div);
