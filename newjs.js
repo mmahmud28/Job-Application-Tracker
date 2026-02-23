@@ -90,7 +90,7 @@ function toogleButton (btnId){
 
     const seletedButton = document.getElementById(btnId);
 
-    // console.log(btnId);
+    console.log(btnId);
 
     currentStatue = btnId;
 
@@ -124,19 +124,15 @@ const mainContainer = document.querySelector("main");
 
 mainContainer.addEventListener("click", function(event){
 
-    const interviewBtn = event.target.closest(".inetview-button");
-    const rejectBtn = event.target.closest("#reject-button");
+    const interviewBtn = event.target.closest(".interview-btn");
+    const rejectBtn = event.target.closest(".reject-btn");
     const deleteBtn = event.target.closest("#delete-button");
-
-    // console.log(interviewBtn);
-    // console.log(rejectBtn);
-    // console.log(deleteBtn);
 
     if(interviewBtn){
 
         const parentNode = event.target.closest(".job-card");
         
-        // console.log(parentNode);
+        console.log(parentNode);
 
         if(!parentNode) return;
 
@@ -145,7 +141,7 @@ mainContainer.addEventListener("click", function(event){
         const jobLocation = parentNode.querySelector(".job-location")?.innerText;
         const jobDescription = parentNode.querySelector(".job-description")?.innerText;
 
-        parentNode.querySelector(".status-button").innerText = "Interview";
+        parentNode.querySelector(".status-btn").innerText = "Interview";
 
         const cardInfo = {
             companyName,
@@ -165,15 +161,15 @@ mainContainer.addEventListener("click", function(event){
 
         calculateCount();
 
-        if(currentStatue === "interview-btn"){
-            renderInterviewData();
-        }
+        // if(currentStatue === "interview-btn"){
+        //     renderInterviewData();
+        // }
 
     } else if(rejectBtn){
 
         const parentNode = event.target.closest(".job-card");
 
-        // console.log(parentNode);
+        console.log(parentNode);
         
 
         if(!parentNode) return;
@@ -183,7 +179,7 @@ mainContainer.addEventListener("click", function(event){
         const jobLocation = parentNode.querySelector(".job-location")?.innerText;
         const jobDescription = parentNode.querySelector(".job-description")?.innerText;
 
-        parentNode.querySelector(".status-button").innerText = "Rejected";
+        parentNode.querySelector(".status-btn").innerText = "Rejected";
 
         const cardInfo = {
             companyName,
@@ -203,9 +199,9 @@ mainContainer.addEventListener("click", function(event){
 
         calculateCount();
 
-        if(currentStatue === "reject-btn"){
-            renderRejectData();
-        }
+        // if(currentStatue === "reject-btn"){
+        //     renderRejectData();
+        // }
 
     } else if(deleteBtn){
 
@@ -233,26 +229,33 @@ function renderInterviewData(){
                     <div class="space-y-6">
             
                     <div>
-                        <h4 class="company-name font-bold text-xl">${cardData.companyName}</h4>
-                <p class="job-type text-gray-600 text-xl">${cardData.jobType}</p>
+                        <h4 class="company-name font-bold text-xl">
+                        ${cardData.companyName}
+                        </h4>
+                <p class="job-type text-gray-600 text-xl">
+                ${cardData.jobType}
+                </p>
                     </div>
 
                 <p class="job-location text-gray-600 text-xl">
-                ${cardData.jobLocation}</p>
-                <button id="status-button" class="status-button btn"> ${cardData.statusButton}</button>
+                ${cardData.jobLocation}
+                </p>
+                <button id="status-button" class="status-btn btn">
+                ${cardData.statusButton}
+                </button>
 
                 <p class="job-description text-xl">
-                 ${cardData.jobDescription}
+                ${cardData.jobDescription}
                 </p>
 
                 <div class="flex gap-5">
-                    <button id="inetview-button" class="inetview-button btn btn-dash btn-accent">interview</button>
-                    <button id="reject-button" class="reject-button btn btn-dash btn-warning">Rejected</button>
+                    <button id="inetview-button" class="interview-btn btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"  class="reject-btn btn btn-dash btn-warning">Rejected</button>
                 </div>
             </div>
 
             <div class="mt-10 md:">
-                <span id="delete-button" class="delete-button bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+                <span id="delete-button" class="delete-btn bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
             </div>
                 </div>
         `
@@ -275,26 +278,33 @@ function renderRejectData(){
                     <div class="space-y-6">
             
                     <div>
-                        <h4 class="company-name font-bold text-xl">${cardData.companyName}</h4>
-                <p class="job-type text-gray-600 text-xl">${cardData.jobType}</p>
+                        <h4 class="company-name font-bold text-xl">
+                        ${cardData.companyName}
+                        </h4>
+                <p class="job-type text-gray-600 text-xl">
+                ${cardData.jobType}
+                </p>
                     </div>
 
                 <p class="job-location text-gray-600 text-xl">
-                ${cardData.jobLocation}</p>
-                <button id="status-button" class="status-button btn"> ${cardData.statusButton}</button>
+                ${cardData.jobLocation}
+                </p>
+                <button id="status-button" class="status-btn btn">
+                ${cardData.statusButton}
+                </button>
 
                 <p class="job-description text-xl">
-                 ${cardData.jobDescription}
+                ${cardData.jobDescription}
                 </p>
 
                 <div class="flex gap-5">
-                    <button id="inetview-button" class="inetview-button btn btn-dash btn-accent">interview</button>
-                    <button id="reject-button" class="reject-button btn btn-dash btn-warning">Rejected</button>
+                    <button id="inetview-button" class="interview-btn btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"  class="reject-btn btn btn-dash btn-warning">Rejected</button>
                 </div>
             </div>
 
             <div class="mt-10 md:">
-                <span id="delete-button" class="delete-button bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+                <span id="delete-button" class="delete-btn bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
             </div>
                 </div>
         `

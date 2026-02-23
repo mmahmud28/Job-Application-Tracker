@@ -31,7 +31,8 @@
         </div>
     </header>
 
-    <section class="mb-5 mt-15">
+    <main>
+         <section class="mb-5 mt-15">
         <div class="flex justify-between text-center">
             <h4 class="text-2xl font-bold">Available Jobs</h4>
             
@@ -41,16 +42,13 @@
             </div>
 
         </div>
-    </section>
-
-    <main>
 
         <div class="mt-5 flex gap-5">
            <button onclick="toogleButton('all-filter-btn')" class="btn btn-active btn-accent text-xl font-bold text-black hover:bg-black hover:text-white" id="all-filter-btn" bor>All</button>
            <button onclick="toogleButton('interview-btn')" class="btn btn-active text-xl font-bold  text-black hover:bg-black hover:text-white" id="interview-btn">Interview</button>
            <button onclick="toogleButton('reject-btn')" class="btn btn-active text-xl font-bold  text-black hover:bg-black hover:text-white" id="reject-btn">Rejected</button>
         </div>
-
+    </section>
         <!-- all card  -->
         <section id="all_card-view-show" class="mb-4 mt-5">
 
@@ -64,49 +62,21 @@
                     </div>
 
                 <p class="job-location text-gray-600 text-xl">Dhaka, Bangladesh, Full-time, ৳40,000 - ৳70,000 / month </p>
-                <button id="status-button" class="status-button btn">Not Applied</button>
+                <button id="status-button" class="status-btn btn">Not Applied</button>
 
                 <p class="job-description text-xl">We are looking for a skilled Frontend Developer with experience in React and Tailwind CSS to build responsive web applications.</p>
 
                 <div class="flex gap-5">
-                    <button id="inetview-button" class="inetview-button btn btn-dash btn-accent">interview</button>
-                    <button id="reject-button" class="reject-button btn btn-dash btn-warning">Rejected</button>
+                    <button id="inetview-button" class="interview-btn btn btn-dash btn-accent">interview</button>
+                    <button id="reject-button"  class="reject-btn btn btn-dash btn-warning">Rejected</button>
                 </div>
             </div>
 
             <div class="mt-10 md:">
-                <span id="delete-button" class="delete-button bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
+                <span id="delete-button" class="delete-btn bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
             </div>
                 </div>
             </div>
-
-             <div class="job-card bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
-                <div>
-                    <div class="space-y-6">
-            
-                    <div>
-                        <h4 class="company-name font-bold text-xl">TgfechNova Solutions</h4>
-                <p class="job-type text-gray-600 text-xl">Frontend Developer</p>
-                    </div>
-
-                <p class="job-location text-gray-600 text-xl">Dhaka, Bangladesh, Full-time, ৳40,000 - ৳70,000 / month </p>
-                <button id="status-button" class="status-button btn">Not Applied</button>
-
-                <p class="job-description text-xl">We are looking for a skilled Frontend Developer with experience in React and Tailwind CSS to build responsive web applications.</p>
-
-                <div class="flex gap-5">
-                    <button id="inetview-button" class="inetview-button btn btn-dash btn-accent">interview</button>
-                    <button id="reject-button" class="reject-button btn btn-dash btn-warning">Rejected</button>
-                </div>
-            </div>
-
-            <div class="mt-10 md:">
-                <span id="delete-button" class="delete-button bg-red-400 md:bg-red-300 rounded-md md:rounded-full px-4 py-3 md:p-2"><i class="fa-solid fa-trash-can"></i></span>
-            </div>
-                </div>
-            </div>
-
-        
 
             <!-- <div class="job-card bg-base-100 card-xs shadow-sm grid grid-cols-1 md:flex justify-between rounded-md p-6 mb-8">
                 <div class="space-y-6">
@@ -281,7 +251,7 @@ v
         </section>
 
         <!-- interview card  -->
-        <section id="interview-card-view-show" class="mb-4 mt-5">
+        <section id="interview-card-view-show" class="mb-4 mt-5 hidden">
             <div id="interview-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
                 <img class="" src="/jobs.png" alt="">
                 <h2 class="font-bold text-2xl text-[#002C5C]">No Interview jobs available</h2>
@@ -290,7 +260,7 @@ v
         </section>
 
         <!-- rej card  -->
-        <section id="reject-card-view-show" class="mb-4 mt-5">
+        <section id="reject-card-view-show" class="mb-4 mt-5 hidden">
             <div id="reject-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
                 <img class="" src="/jobs.png" alt="">
                 <h2 class="font-bold text-2xl text-[#002C5C]">No Rejected jobs available</h2>
