@@ -2,7 +2,6 @@ let totalNum = document.getElementById('total-num');
 let interviewNum = document.getElementById('interview-num');
 let rejectNum = document.getElementById('reject-num');
 
-
 let totalJobNum = document.getElementById('total-job-num');
 
 
@@ -99,10 +98,14 @@ function calculateCount (){
 
     if(interViewArrayList.length>0){
         interViewEmty.classList.add("hidden")
+    }else{
+        interViewEmty.classList.remove("hidden")
     }
 
     if(rejectArrayList.length>0){
         rejectEmty.classList.add("hidden")
+    }else{
+        interViewEmty.classList.remove("hidden")
     }
 
 }
@@ -156,6 +159,8 @@ mainContainer.addEventListener("click", function(event){
             const name = card.querySelector(".company-name")?.innerText;
             if(name === companyName){
                 card.querySelector(".status-btn").innerText = "Interview";
+                 card.querySelector(".status-btn").classList.remove("bg-red-400");
+                card.querySelector(".status-btn").classList.add("bg-green-400");
                 break;
             }
         }
@@ -181,6 +186,7 @@ mainContainer.addEventListener("click", function(event){
         }
 
         calculateCount();
+        numCalculate();
 
     } else if(rejectBtn){
 
@@ -200,6 +206,8 @@ mainContainer.addEventListener("click", function(event){
             const name = card.querySelector(".company-name")?.innerText;
             if(name === companyName){
                 card.querySelector(".status-btn").innerText = "Rejected";
+                card.querySelector(".status-btn").classList.remove("bg-green-400");
+                card.querySelector(".status-btn").classList.add("bg-red-400");
                 break;
             }
         }
@@ -225,26 +233,64 @@ mainContainer.addEventListener("click", function(event){
         }
 
         calculateCount();
+        numCalculate();
 
     } else if(deleteBtn){
 
-        const parentNode = deleteBtn.closest(".job-card");
-        if(!parentNode) return;
+    const parentNode = deleteBtn.closest(".job-card");
+    if(!parentNode) return;
 
-        const companyName = parentNode.querySelector(".company-name")?.innerText;
+    const companyName = parentNode.querySelector(".company-name")?.innerText;
+    if(!companyName) return;
 
-        const allCards = allCardViewShow.querySelectorAll(".job-card");
-        for(let card of allCards){
-            const name = card.querySelector(".company-name")?.innerText;
-            if(name === companyName){
-                card.remove();
-                break;
-            }
+    const allCards = allCardViewShow.querySelectorAll(".job-card");
+
+    for(let card of allCards){
+        const name = card.querySelector(".company-name")?.innerText;
+        if(name === companyName){
+            card.remove();
+            break;
         }
-
-        parentNode.remove();
-        calculateCount();
     }
+
+    const interviewCards = interviewCardViewShow.querySelectorAll(".job-card");
+
+    for(let card of interviewCards){
+        const name = card.querySelector(".company-name")?.innerText;
+        if(name === companyName){
+            card.remove();
+            break;
+        }
+    }
+
+    const rejectCards = rejectCardViewShow.querySelectorAll(".job-card");
+
+    for(let card of rejectCards){
+        const name = card.querySelector(".company-name")?.innerText;
+        if(name === companyName){
+            card.remove();
+            break;
+        }
+    }
+
+    interViewArrayList = interViewArrayList.filter(
+        item => item.companyName !== companyName
+    );
+
+    rejectArrayList = rejectArrayList.filter(
+        item => item.companyName !== companyName
+    );
+
+    if(currentStatue === "interview-btn"){
+        renderInterviewData();
+    }
+
+    if(currentStatue === "reject-btn"){
+        renderRejectData();
+    }
+
+    calculateCount();
+    numCalculate();}
 
 });
 
@@ -282,7 +328,7 @@ function renderInterviewData(){
                 <p class="job-location text-gray-600 text-xl">
                 ${cardData.jobLocation}
                 </p>
-                <button id="status-button" class="status-btn btn">
+                <button id="status-button" class="status-btn btn bg-green-500">
                 ${cardData.statusButton}
                 </button>
 
@@ -339,7 +385,7 @@ function renderRejectData(){
                 <p class="job-location text-gray-600 text-xl">
                 ${cardData.jobLocation}
                 </p>
-                <button id="status-button" class="status-btn btn">
+                <button id="status-button" class="status-btn btn bg-red-400">
                 ${cardData.statusButton}
                 </button>
 

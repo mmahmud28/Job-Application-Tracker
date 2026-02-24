@@ -1,74 +1,13 @@
-## Welcome To ( সহজ সরল সিম্পল ) Assignment - 4 
-
-
----
-# 📅 Deadline For 60 marks: 23th February, 2026 (11:59 pm ⏱️)
-# 📅 Deadline For 50 marks: 24th February, 2026 (11:59 pm ⏱️)
-# 📅 Deadline For 30 marks: Any time after 24th February.
-
-
-# Main Requirements
-
-## Design Part
-
-## Dashboard
-- Website name and Create a dashboard like figma 
-- The section should be responsive for mobile devices. It is totally up to you. 
-
-## Available Jobs Section
-- A title on the left side, jobs count on the right side 
-- 3 different tab  below the section title 
-- Minimum 8 cards with:
-	- companyName
-	- position
-	- location
-	- type
-	- salary
-	- description
-	- 2 buttons: Interview, Rejected
-- By default all the jobs data will show on All tab, and the Interview, Rejected tab will show “No jobs Available” message with a subtitle below and an icon/image on the above
-
-- The section should be responsive for mobile devices. It is totally up to you.
-
---- 
-
-## Functionalities Part
-- Clicking on Interview button on the card 
-    - will add the data on Interview tab 
-    - add the status as Interview.
-    - Will increase the the count of interview in Dashboard 
-
-- Clicking on Rejected button on the card 
-    - will add the data on Rejected tab 
-    - add the status as Rejected.
-    - Will increase the the count of Rejected in Dashboard
-
-- Enable toggle between Interview and rejected button(you can select Rejected button after 
-
-## Answers to Questions
 
 ### 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
-
+Answers: getElementById একটি এলিমেন্ট রিটার্ন করে কিন্তু getElementsByClassName একাধিক এলিমেন্ট নিয়ে আসে যা থাকে, querySelector প্রথম matching element return করে ও  id, class, tag — সব দিয়ে কাজ করে CSS selector ব্যবহার করতে হয় (#, .) কিন্তু querySelectorAll সব matching element return করে, id, class, tag — সব দিয়ে কাজ করে CSS selector ব্যবহার করতে হয় (#, .)।
 ### 2. How do you create and insert a new element into the DOM?
-
+Answers: let div = document.createElement("div"); এবং div.innerHTML অথবা classList, innerText , appendChild করে।
 ### 3. What is Event Bubbling? And how does it work?
-
+Answers: কোনো child element এ event ঘটলে সেই event ধাপে ধাপে তার parent থেকে তার grandparent এর মধ্যে থাকা এলিমেন্ট নিয়ে কাজ করা যায়।  
 ### 4. What is Event Delegation in JavaScript? Why is it useful?
+Answers: child element এ আলাদা করে event listener না দিয়ে তাদের common parent element এ একটি মাত্র event listener ব্যবহার করে child কে handle করা যায়। একাধিক বাটন থাকলেও একটি মাত্র listener ব্যাবহার করে ক্লিন ও প্রফেশনাল কোড করা যায়।
 
 ### 5. What is the difference between preventDefault() and stopPropagation() methods?
+Answers: event.preventDefault() Browser এর default behavior বন্ধ করে দেয় এবং এটা reload বন্ধ করে দেয়। event.stopPropagation() Event যেন parent element এ না যায় (Bubbling বন্ধ করে)।
 
----
-
-
-**Technology Stack:**
-- HTML
-- CSS (Vanilla/Tailwind/DaisyUI)
-- JavaScript (Vanilla)
-
-
---- 
-
-## What to submit: 
-
-1. GitHub Repository Link: 
-2. Live Site Link: 
