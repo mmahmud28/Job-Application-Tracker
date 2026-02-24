@@ -86,12 +86,16 @@ function toogleButton (btnId){
 }
 
 function calculateCount (){
-    totalNum.innerText = allCardViewShow.children.length;
-    totalJobNum.innerText = allCardViewShow.children.length;
 
+    let totalCard = allCardViewShow.children.length;
 
-    interviewNum.innerText = interViewArrayList.length;
-    rejectNum.innerText = rejectArrayList.length;
+    totalNum.innerText = totalCard;
+
+    let interviewCard = interViewArrayList.length;
+    let rejectCard = rejectArrayList.length;
+
+    interviewNum.innerText = interviewCard;
+    rejectNum.innerText = rejectCard;
 
     if(interViewArrayList.length>0){
         interViewEmty.classList.add("hidden")
@@ -101,6 +105,24 @@ function calculateCount (){
         rejectEmty.classList.add("hidden")
     }
 
+}
+
+function numCalculate (){
+     let totalCard = allCardViewShow.children.length;
+      let interviewCard = interViewArrayList.length;
+    let rejectCard = rejectArrayList.length;
+
+    console.log(currentStatue+"Mahmud");
+
+    if(currentStatue=="All"){
+        totalJobNum.innerText = totalCard;
+    } else if (currentStatue == "all-filter-btn"){
+         totalJobNum.innerText = totalCard;
+    } else if (currentStatue == "interview-btn"){
+         totalJobNum.innerText = interviewCard + " Of " + totalCard;
+    } else if (currentStatue == "reject-btn"){
+         totalJobNum.innerText = rejectCard + " Of " + totalCard;
+    } 
 }
 
 calculateCount()
@@ -114,12 +136,11 @@ mainContainer.addEventListener("click", function(event){
     const rejectBtn = event.target.closest(".reject-btn");
     const deleteBtn = event.target.closest("#delete-button");
 
+    numCalculate();
+
     if(interviewBtn){
 
-        const parentNode = event.target.closest(".job-card");
-        
-        console.log(parentNode);
-
+        const parentNode = interviewBtn.closest(".job-card");
         if(!parentNode) return;
 
         const companyName = parentNode.querySelector(".company-name")?.innerText;
@@ -128,6 +149,16 @@ mainContainer.addEventListener("click", function(event){
         const jobDescription = parentNode.querySelector(".job-description")?.innerText;
 
         parentNode.querySelector(".status-btn").innerText = "Interview";
+
+        const allCards = allCardViewShow.querySelectorAll(".job-card");
+        
+        for(let card of allCards){
+            const name = card.querySelector(".company-name")?.innerText;
+            if(name === companyName){
+                card.querySelector(".status-btn").innerText = "Interview";
+                break;
+            }
+        }
 
         const cardInfo = {
             companyName,
@@ -138,28 +169,22 @@ mainContainer.addEventListener("click", function(event){
         };
 
         const exist = interViewArrayList.find(item => item.companyName == companyName);
-
         if(!exist){
             interViewArrayList.push(cardInfo);
         }
 
         rejectArrayList = rejectArrayList.filter(item => item.companyName != companyName);
 
-        console.log(currentStatue+"Poli")
-
         if(currentStatue == "reject-btn"){
             renderRejectData();
+            numCalculate();
         }
 
         calculateCount();
 
     } else if(rejectBtn){
 
-        const parentNode = event.target.closest(".job-card");
-
-        console.log(parentNode);
-        
-
+        const parentNode = rejectBtn.closest(".job-card");
         if(!parentNode) return;
 
         const companyName = parentNode.querySelector(".company-name")?.innerText;
@@ -168,6 +193,16 @@ mainContainer.addEventListener("click", function(event){
         const jobDescription = parentNode.querySelector(".job-description")?.innerText;
 
         parentNode.querySelector(".status-btn").innerText = "Rejected";
+
+        const allCards = allCardViewShow.querySelectorAll(".job-card");
+        
+        for(let card of allCards){
+            const name = card.querySelector(".company-name")?.innerText;
+            if(name === companyName){
+                card.querySelector(".status-btn").innerText = "Rejected";
+                break;
+            }
+        }
 
         const cardInfo = {
             companyName,
@@ -178,27 +213,36 @@ mainContainer.addEventListener("click", function(event){
         };
 
         const exist = rejectArrayList.find(item => item.companyName == companyName);
-
         if(!exist){
             rejectArrayList.push(cardInfo);
         }
 
         interViewArrayList = interViewArrayList.filter(item => item.companyName != companyName);
 
-
         if(currentStatue === "interview-btn"){
             renderInterviewData();
+            numCalculate();
         }
 
-         calculateCount();
+        calculateCount();
 
     } else if(deleteBtn){
 
-        const parentNode = event.target.closest(".job-card");
+        const parentNode = deleteBtn.closest(".job-card");
         if(!parentNode) return;
 
-        parentNode.remove();
+        const companyName = parentNode.querySelector(".company-name")?.innerText;
 
+        const allCards = allCardViewShow.querySelectorAll(".job-card");
+        for(let card of allCards){
+            const name = card.querySelector(".company-name")?.innerText;
+            if(name === companyName){
+                card.remove();
+                break;
+            }
+        }
+
+        parentNode.remove();
         calculateCount();
     }
 

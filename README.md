@@ -43,16 +43,7 @@
     - add the status as Rejected.
     - Will increase the the count of Rejected in Dashboard
 
-- Enable toggle between Interview and rejected button(you can select Rejected button after clicking on Interview, and Interview button after clicking on Rejected button). It will change the tab and dashboard count also. It will show tab wise jobs count on the right.
-
----
-
-# Challenges Requirements
-- Clicking on the delete button will remove that card from the UI, and the count will be deducted from the dashboard card and the main section.
-- No lorem ipsum text on your website. At least 8 meaningful commits in your project.  
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
-
+- Enable toggle between Interview and rejected button(you can select Rejected button after 
 
 ## Answers to Questions
 
