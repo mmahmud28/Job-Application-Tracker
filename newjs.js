@@ -4,36 +4,28 @@ let rejectNum = document.getElementById('reject-num');
 
 let totalJobNum = document.getElementById('total-job-num');
 
-
 const allFilterButton = document.getElementById('all-filter-btn');
 const interviewFilterButton = document.getElementById('interview-btn');
 const rejectFilterButton = document.getElementById('reject-btn');
 
-
 const deleteButton = document.getElementById('delete-button');
-
 
 const statusButton = document.getElementById('status-button');
 
 statusButton.innerText = statusButton.innerText.toUpperCase();
 
-
 let allCardViewShow = document.getElementById('all_card-view-show');
 let interviewCardViewShow = document.getElementById("interview-card-view-show");
 let rejectCardViewShow = document.getElementById("reject-card-view-show");
 
-
 const interViewButton = document.getElementById('inetview-button');
 const rejectButton = document.getElementById('reject-button');
-
 
 interViewButton.innerText = interViewButton.innerText.toUpperCase();
 rejectButton.innerText = rejectButton.innerText.toUpperCase();
 
-
 const interViewEmty = document.getElementById("interview-emty-card-design");
 const rejectEmty = document.getElementById("reject-emty-card-design");
-
 
 let interViewArrayList = [];
 let rejectArrayList = [];
@@ -114,8 +106,6 @@ function numCalculate (){
      let totalCard = allCardViewShow.children.length;
       let interviewCard = interViewArrayList.length;
     let rejectCard = rejectArrayList.length;
-
-    console.log(currentStatue+"Mahmud");
 
     if(currentStatue=="All"){
         totalJobNum.innerText = totalCard;
@@ -352,6 +342,7 @@ function renderInterviewData(){
     }
 
 }
+
 function renderRejectData(){
 
     rejectCardViewShow.innerHTML = "";
