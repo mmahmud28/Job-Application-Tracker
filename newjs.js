@@ -122,6 +122,52 @@ calculateCount()
 
 const mainContainer = document.querySelector("main");
 
+function rejectEmtyCard (){
+     if (!rejectArrayList || rejectArrayList.length === 0) {
+
+    if (rejectCardViewShow) {
+
+        rejectCardViewShow.innerHTML = "";
+
+        let div = document.createElement("div");
+        div.className = "p-5";
+
+        div.innerHTML = `
+            <div id="reject-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
+                <img class="" src="/jobs.png" alt="">
+                <h2 class="font-bold text-2xl text-[#002C5C]">No Rejected jobs available</h2>
+                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
+            </div>
+        `;
+
+        rejectCardViewShow.appendChild(div);
+    }
+}
+
+    }
+
+function interviewEmtyCard(){
+    if (!interViewArrayList || interViewArrayList.length === 0) {
+
+    if (interviewCardViewShow) {
+
+        interviewCardViewShow.innerHTML = "";
+
+        let div = document.createElement("div");
+        div.className = "p-5";
+
+        div.innerHTML = `
+            <div id="interview-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
+                <img class="" src="/jobs.png" alt="">
+                <h2 class="font-bold text-2xl text-[#002C5C]">No Interview jobs available</h2>
+                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
+            </div>
+        `;
+
+        interviewCardViewShow.appendChild(div);
+    }
+}
+}
 
 mainContainer.addEventListener("click", function(event){
 
@@ -173,31 +219,7 @@ mainContainer.addEventListener("click", function(event){
         if(currentStatue == "reject-btn"){
             renderRejectData();
             numCalculate();
-
-            console.log(rejectArrayList.length);
-            
-
-           if (!rejectArrayList || rejectArrayList.length === 0) {
-
-    if (rejectCardViewShow) {
-
-        rejectCardViewShow.innerHTML = "";
-
-        let div = document.createElement("div");
-        div.className = "p-5";
-
-        div.innerHTML = `
-            <div id="reject-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
-                <img class="" src="/jobs.png" alt="">
-                <h2 class="font-bold text-2xl text-[#002C5C]">No Rejected jobs available</h2>
-                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
-            </div>
-        `;
-
-        rejectCardViewShow.appendChild(div);
-    }
-}
-
+            rejectEmtyCard();
         }
 
         calculateCount();
@@ -245,27 +267,7 @@ mainContainer.addEventListener("click", function(event){
         if(currentStatue === "interview-btn"){
             renderInterviewData();
             numCalculate();
-
-             if (!interViewArrayList || interViewArrayList.length === 0) {
-
-    if (interviewCardViewShow) {
-
-        interviewCardViewShow.innerHTML = "";
-
-        let div = document.createElement("div");
-        div.className = "p-5";
-
-        div.innerHTML = `
-            <div id="interview-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
-                <img class="" src="/jobs.png" alt="">
-                <h2 class="font-bold text-2xl text-[#002C5C]">No Interview jobs available</h2>
-                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
-            </div>
-        `;
-
-        interviewCardViewShow.appendChild(div);
-    }
-}
+            interviewEmtyCard()
         }
 
         calculateCount();
@@ -325,47 +327,8 @@ mainContainer.addEventListener("click", function(event){
         renderRejectData();
     }
 
-    if (!interViewArrayList || interViewArrayList.length === 0) {
-
-    if (interviewCardViewShow) {
-
-        interviewCardViewShow.innerHTML = "";
-
-        let div = document.createElement("div");
-        div.className = "p-5";
-
-        div.innerHTML = `
-            <div id="interview-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
-                <img class="" src="/jobs.png" alt="">
-                <h2 class="font-bold text-2xl text-[#002C5C]">No Interview jobs available</h2>
-                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
-            </div>
-        `;
-
-        interviewCardViewShow.appendChild(div);
-    }
-}
-
-if (!rejectArrayList || rejectArrayList.length === 0) {
-
-    if (rejectCardViewShow) {
-
-        rejectCardViewShow.innerHTML = "";
-
-        let div = document.createElement("div");
-        div.className = "p-5";
-
-        div.innerHTML = `
-            <div id="reject-emty-card-design" class="card bg-base-100 shadow-sm py-[100px] flex flex-col items-center justify-center text-center">
-                <img class="" src="/jobs.png" alt="">
-                <h2 class="font-bold text-2xl text-[#002C5C]">No Rejected jobs available</h2>
-                <p class="text-xl text-gray-600">Check back soon for new job opportunities</p>
-            </div>
-        `;
-
-        rejectCardViewShow.appendChild(div);
-    }
-}
+    interviewEmtyCard();
+    rejectEmtyCard();
 
     calculateCount();
     numCalculate();}
